@@ -1,0 +1,60 @@
+
+must have
+
+
+sudo code 
+
+
+photography blogging site
+options for camera type,
+search functionality by camera type etc
+slack style reactions, counter next to emojis, camera themed emojis, only posting 1 emoji
+360 word limits
+gif entry
+
+
+
+
+Should have
+news and articles section 
+warning if imput not filled
+dark mode/light mode
+
+
+
+could have
+section for contests
+rankings list
+calender search
+
+
+
+won't have
+
+
+
+
+
+
+
+
+Users should be able to visit the website and anonymously post journal entries.
+client/server.js, css styling? append and create new elements
+
+
+
+Users should be limited to how many characters they can put in an entry.
+360 limit
+
+
+Users should be able to post gifs from giphy in an entry.
+Users should be able to view other peoples' entries.
+
+
+Users should be able to react to other peoples’ entries with an emoji.
+Users should have three emojis to choose from.
+Users should be able to comment on other people’s entries.
+Your website should have the following technical functionality:
+Aim for minimum 60% test coverage (In future projects this will be enforced with an aim for 80%)
+Your website should be hosted via Netlify / GitHub pages or similar
+Your website should not have a database connected, instead any data sent and stored in your backend should be saved within .json files.
