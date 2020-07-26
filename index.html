@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="output.css">
-    <script defer src="client.js"></script>
     <script defer src="frontend.js"></script>
+    <script defer src="client.js"></script>
   </head>
   <body>
 
@@ -56,11 +56,6 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <button id="showModal" class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true">Launch card modal</button>
-            
-                
-                
-              
-            
           </div>
         </div>
       </div>
@@ -72,19 +67,47 @@
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title">Modal title</p>
+            <p class="modal-card-title">Quick post</p>
             <button class="delete" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
             <div class="content">
-              <h1>Hello World</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque.</p>
-              
-              
+
+
+              <input type="text" id="title" name="title" placeholder="Post title..."/>
+              <label for="camera">Camera used:</label>
+              <select name="Camera type" id="camera">
+                <option value="cam1">cam1</option>
+                <option value="cam2">cam2</option>
+                <option value="cam3">cam3</option>
+                <option value="other">other</option>
+              </select>
+              <label for="lens">Lens used:</label>
+              <select name="Lens type" id="lens">
+                <option value="lens1">lens1</option>
+                <option value="lens2">lens2</option>
+                <option value="lens3">lens3</option>
+                <option value="other">other</option>
+              </select>
+              <label for="style">Style:</label>
+              <select name="style" id="style">
+                <option value="style1">style1</option>
+                <option value="style2">style2</option>
+                <option value="styles3">style3</option>
+                <option value="other">other</option>
+              </select>
+              <br>
+              <label for="userfile">Choose file:</label>
+              <input type="file" id="userfile" name="userfile">
+              <!-- should LIMIT to only accept images and no other file types -->
+              <br>
+              <input type="text" id="caption" name="caption" placeholder="Write your caption here...">
+
+
             </div>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
+            <button id="submitButton" class="button is-success">Submit</button>
             <button class="button">Cancel</button>
           </footer>
         </div>
@@ -92,7 +115,7 @@
 
 
 
-      
+
       <div class="columns is-multiline results">
         <!-- results is a custom secondary class -->
         <!-- we append the new elements HERE -->
