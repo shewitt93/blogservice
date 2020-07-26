@@ -6,14 +6,14 @@
 
 
 ##photography blogging site.
-* options for camera type,
+* options for camera type,   done
 * search functionality by camera type etc
 * slack style reactions, counter next to emojis, camera themed emojis, only posting 1 emoji
-* 360 word limits
+* 360 word limits  done
 * gif entry
 * delete/update posts
-* append and create new elements
-* upload image from local files
+* append and create new elements  pending
+* upload image from local files   done
 
 * Users should be able to comment on other people’s entries. on pop out comments section and emoji choices with gif options
 * https://gyazo.com/692791cccee8ae8cd8efb0a50f696aa2
