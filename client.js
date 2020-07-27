@@ -1,5 +1,6 @@
 const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
+const image = document.querySelector("#userfile")
 // const url = http://localhost:3000/
 
 
@@ -9,6 +10,8 @@ const submit = document.getElementById('submitButton');
 // }
 
 submit.addEventListener('click', submitBlog)
+image.addEventListener('change', generatebase64)
+var base64img;
 
 // Fetch all blog posts as soon as app is loaded
 getAllBlogs();
@@ -20,6 +23,19 @@ function getAllBlogs(){
         .catch(console.warn)
 };
 
+File.prototype.convertToBase64 = function(){
+  return new Promise(function(resolve, reject) {
+         var reader = new FileReader();
+         reader.onloadend = function (e) {
+             resolve({
+               fileName: this.name,
+               result: e.target.result,
+               error: e.target.error
+             });
+         };
+         reader.readAsDataURL(this);
+ }.bind(this));
+};
 
 function submitBlog(e){
   e.preventDefault();
@@ -29,7 +45,7 @@ function submitBlog(e){
     type: form.style.value,
     cameratype: form.camera.value,
     lenstype: form.lens.value,
-    image: form.userfile.value //returns a string of a path e.g."C:\fakepath\Blossom.gif"
+    image: base64img //returns a string of a path e.g."C:\fakepath\Blossom.gif"
   };
 
   const options = {
@@ -50,9 +66,9 @@ function displayData (data) {
   const card = document.createElement("div")
   card.setAttribute("class", "card")
     // append inner div for card image
-    const cardImage = document.createElement("div")
+    const cardImage = document.createElement("img")
     cardImage.setAttribute("class", "card-image")
-    cardImage.textContent = data.image;
+    cardImage.src = data.image;
     card.appendChild(cardImage)
     // append inner div for title
     const cardTitle = document.createElement("p")
@@ -85,3 +101,8 @@ function displayData (data) {
     card.appendChild(caption)
     results.append(card);
 }
+
+async function generatebase64() {
+    const base64 = await image.files[0].convertToBase64()
+      base64img = base64.result
+  }
