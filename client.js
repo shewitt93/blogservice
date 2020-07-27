@@ -1,6 +1,7 @@
 const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
 const image = document.querySelector("#userfile")
+const search = document.getElementById("search");
 // const url = http://localhost:3000/
 
 
@@ -27,6 +28,7 @@ File.prototype.convertToBase64 = function(){
   return new Promise(function(resolve, reject) {
          var reader = new FileReader();
          reader.onloadend = function (e) {
+           e.preventDefault();
              resolve({
                fileName: this.name,
                result: e.target.result,
@@ -36,6 +38,16 @@ File.prototype.convertToBase64 = function(){
          reader.readAsDataURL(this);
  }.bind(this));
 };
+
+// search.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   question = form.inputMode.value;
+//   console.log({question})
+//   fetch(`http://localhost:3000/search?q=${question}`)
+//       .then((r) => r.json())
+//       .then((data) => displayData(data))
+//       .catch((err) => console.warn(err));
+//   });
 
 function submitBlog(e){
   e.preventDefault();
@@ -59,6 +71,7 @@ function submitBlog(e){
   .then(() => displayData(parseData))
   .catch(console.warn)
   }
+
 
 function displayData (data) {
   const results = document.querySelector(".results")

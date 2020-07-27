@@ -25,4 +25,19 @@ server.post('/blog', (req, res) => {
   res.send(JSON.stringify(newBlog))
 })
 
+// Create route for search
+server.get("/blog", (req,res)=> {
+    let search = req.query.q;
+    let choice = searchTerm(search);
+    choice.length > 0 ? res.send(JSON.stringify(choice)): res.send(JSON.stringify(`"${search}" returned no results!`));
+});
+const searchTerm = (question) => {
+    return data.blog.filter((data) => {
+      post.title.toLowerCase().includes(question) ||
+      post.type.toLowerCase().includes(question) ||
+      post.text.toLowerCase().includes(question) ||
+      post.cameratype.toLowerCase().includes(question) ||
+      post.lenstype.toLowerCase().includes(question)
+})};
+
 server.listen(port, () => console.log(`Express now departing from http://localhost:${port}`))
