@@ -8,38 +8,35 @@ const submit = document.getElementById('submitButton')
 //   location.pathname = "/index.html"
 // }
 
-form.addEventListener('submit', submitBlog)
-submit.addEventListener('click', displayData)
 
-const testContent = { title: "This is test content" }
+submit.addEventListener('click', submitBlog)
+// before
+// form.
+// submit.addEventListener('click', displayData)
 
 function submitBlog(e){
   e.preventDefault();
-  debugger;
   
   const parseData = {
-    // e.target - that is the button
-    title: e.target.title.value,
-    text: e.target.caption.value,
-    type: e.target.style.value,
-    cameratype: e.target.camera.value,
-    lenstype: e.target.lens.value,
-    image: e.target.userfile.value //returns a string of a path e.g."C:\fakepath\Blossom.gif"
+    title: form.title.value,
+    text: form.caption.value,
+    type: form.style.value,
+    cameratype: form.camera.value,
+    lenstype: form.lens.value,
+    image: form.userfile.value //returns a string of a path e.g."C:\fakepath\Blossom.gif"
   }
 
-  // const options = {
-  //   method: "POST",
-  //   body: JSON.stringify(parseData)
-  // }
+  const options = {
+    method: "POST",
+    body: JSON.stringify(parseData)
+  }
 
-  // fetch('http://localhost:3000/blog', options)
-  // .then(r => r.json()
-  // .then(() => displayData(parseData))
-  // .catch(console.warn)
-  // )
+  fetch('http://localhost:3000/blog', options)
+  .then(r => r.json()
+  .then(() => displayData(parseData))
+  .catch(console.warn)
+  )
 } 
-
-
 
 // function displayData () {
 //   // const data = localStorage.getItem("data")
@@ -64,46 +61,45 @@ function submitBlog(e){
 //   results.append(element)
 // }
 
-
-function displayData () {
+function displayData (object) {
   const results = document.querySelector(".results")
   // create card
   const card = document.createElement("div")
-  card.setAttribute("class", "card")
-    // append inner div for card image
-    const cardImage = document.createElement("div")
-    cardImage.setAttribute("class", "card-image")
-    cardImage.textContent = "This is a card image"
-    card.appendChild(cardImage)
-    // append inner div for title
-    const cardTitle = document.createElement("p")
-    cardTitle.setAttribute("class", "title is-4")
-    cardTitle.textContent = "This is a title"
-    card.appendChild(cardTitle)
-    // append inner div for metadata
-    const metadataContainer = document.createElement("div")
-    metadataContainer.setAttribute("class", "card-footer")
-    card.appendChild(metadataContainer)
-    // append inner div for camera mode
-    const cameraMode = document.createElement("p")
-    cameraMode.setAttribute("class", "card-footer-item")
-    cameraMode.textContent = "Camera mode"
-    metadataContainer.appendChild(cameraMode)
-    // append inner div for camera make
-    const cameraType = document.createElement("p")
-    cameraType.setAttribute("class", "card-footer-item")
-    cameraType.textContent = "Camera brand"
-    metadataContainer.appendChild(cameraType)
-    // append inner div for lens
-    const lens = document.createElement("p")
-    lens.setAttribute("class", "card-footer-item")
-    lens.textContent = "Lens type"
-    metadataContainer.appendChild(lens)
-    // append inner div for text body
-    const caption = document.createElement("div")
-    caption.setAttribute("class", "content")
-    caption.textContent = "Main body of text"
-    card.appendChild(caption)
+  card.setAttribute("class", "card column is-half")
+      // append inner div for card image
+      const cardImage = document.createElement("div")
+      cardImage.setAttribute("class", "card-image")
+      cardImage.textContent = object.image
+      card.appendChild(cardImage)
+      // append inner div for title
+      const cardTitle = document.createElement("p")
+      cardTitle.setAttribute("class", "title is-4")
+      cardTitle.textContent = object.title
+      card.appendChild(cardTitle)
+      // append inner div for metadata
+      const metadataContainer = document.createElement("div")
+      metadataContainer.setAttribute("class", "card-footer")
+      card.appendChild(metadataContainer)
+          // append inner div for camera mode
+          const cameraMode = document.createElement("p")
+          cameraMode.setAttribute("class", "card-footer-item")
+          cameraMode.textContent = object.type
+          metadataContainer.appendChild(cameraMode)
+          // append inner div for camera make
+          const cameraType = document.createElement("p")
+          cameraType.setAttribute("class", "card-footer-item")
+          cameraType.textContent = object.cameratype
+          metadataContainer.appendChild(cameraType)
+          // append inner div for lens
+          const lens = document.createElement("p")
+          lens.setAttribute("class", "card-footer-item")
+          lens.textContent = object.lenstype
+          metadataContainer.appendChild(lens)
+      // append inner div for text body
+      const caption = document.createElement("div")
+      caption.setAttribute("class", "content")
+      caption.textContent = object.text
+      card.appendChild(caption)
 
   results.append(card);
 }  
