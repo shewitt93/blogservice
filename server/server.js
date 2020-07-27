@@ -6,7 +6,7 @@ const server = express();
 server.use(cors());
 server.use(bodyParser.text());
 
-// My cats resource
+// My blogs resource
 const blog = [
     {title: "angus", text: "hello", type: "Digital", cameratype: "Canon",
     lenstype: "50mm f/1.8", image: "C:\fakepath\angus_photo.jpg"},

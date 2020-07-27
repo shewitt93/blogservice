@@ -5,6 +5,7 @@ btn.addEventListener('click', function(){
   modalDlg.classList.add('is-active');
 });
 
-imageModalCloseBtn.addEventListener('click', function(){
+imageModalCloseBtn.addEventListener('click', function(e){
+  e.preventDefault();
   modalDlg.classList.remove('is-active');
 });
