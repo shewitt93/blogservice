@@ -63,61 +63,63 @@
 
 
     <main>
-      <div id="modal-ter" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Quick post</p>
-            <button class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body">
-            <div class="content">
+      <form id="blogForm">
+        <div id="modal-ter" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Quick post</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+              <div class="content">
 
 
-              <input type="text" id="title" name="title" placeholder="Post title..."/>
-              
-              <label for="style">Mode:</label>
-              <select name="style" id="style">
-                <option value="style1">Digital</option>
-                <option value="style2">Analog</option>
+                <input type="text" id="title" name="title" placeholder="Post title..."/>
+                
+                <label for="style">Mode:</label>
+                <select name="style" id="style">
+                  <option value="Digital">Digital</option>
+                  <option value="Analog">Analog</option>
+                  
+                  
+                </select>
+                <label for="camera">Camera:</label>
+                <select name="Camera type" id="camera">
+                  <option value="Canon">Canon</option>
+                  <option value="Nikon">Nikon</option>
+                  <option value="Sony">Sony</option>
+                  <option value="Leica">Leica</option>
+                </select>
+                <label for="lens">Lens:</label>
+                <select name="Lens type" id="lens">
+                  <option value="50mm f/1.8">50mm f/1.8</option>
+                  <option value="210 f/3">210 f/3</option>
+                  <option value="150 f/2.5">150 f/2.5</option>
+                  <option value="35mm f/1">35mm f/1</option>
+                </select>
                 
                 
-              </select>
-              <label for="camera">Camera:</label>
-              <select name="Camera type" id="camera">
-                <option value="cam1">Canon</option>
-                <option value="cam2">Nikon</option>
-                <option value="cam3">Sony</option>
-                <option value="other">Leica</option>
-              </select>
-              <label for="lens">Lens:</label>
-              <select name="Lens type" id="lens">
-                <option value="lens1">50mm f/1.8</option>
-                <option value="lens2">210 f/3</option>
-                <option value="lens3">150 f/2.5</option>
-                <option value="other">35mm f/1</option>
-              </select>
-              
-              
-              <br>
-              <br>
-              <label for="userfile">Choose file:</label>
-              <input type="file" id="userfile" name="userfile">
-              <!-- should LIMIT to only accept images and no other file types -->
-              <br>
-              <br>
-              <textarea class="textarea" maxlength = "300" placeholder="Enter Text" rows="10" id="caption" name="caption" "></textarea>
-              <!-- 300 word limit set here -->
+                <br>
+                <br>
+                <label for="userfile">Choose file:</label>
+                <input type="file" id="userfile" name="userfile">
+                <!-- should LIMIT to only accept images and no other file types -->
+                <br>
+                <br>
+                <textarea class="textarea" maxlength = "300" placeholder="Enter Text" rows="10" id="caption" name="caption" "></textarea>
+                <!-- 300 word limit set here -->
 
 
-            </div>
-          </section>
-          <footer class="modal-card-foot">
-            <button id="submitButton" class="button is-success">Submit</button>
-            <button class="button">Cancel</button>
-          </footer>
+              </div>
+            </section>
+            <footer class="modal-card-foot">
+              <button id="submitButton" class="button is-success">Submit</button>
+              <button class="button">Cancel</button>
+            </footer>
+          </div>
         </div>
-      </div>
+      </form>
 
 
 
