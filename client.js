@@ -1,4 +1,4 @@
-const btn = document.getElementById('submitButton')
+const butn = document.getElementById('submitButton')
 // const url = http://localhost:3000/
 
 
@@ -7,19 +7,19 @@ const btn = document.getElementById('submitButton')
 //   location.pathname = "/index.html"
 // }
 
-btn.addEventListener('click', submitBlog)
+butn.addEventListener('click', submitBlog)
 
 
 function submitBlog(e){
   e.preventDefault();
-
+  
   const parseData = {
-    title: e.target.title.value,
-    text: e.target.caption.value,
-    filmordig: e.target.style.value,
-    cameratype: e.target.camera.value,
-    lenstype: e.target.lens.value,
-    image: e.target.userfile.value //returns a string of a path e.g."C:\fakepath\Blossom.gif"
+    title: e.target.id.value,
+    text: e.target.id.value,
+    type: document.querySelector('#style'),
+    cameratype: document.querySelector('#camera'),
+    lenstype: document.querySelector('#lens'),
+    // image: e.target.userfile.value //returns a string of a path e.g."C:\fakepath\Blossom.gif"
   }
 
   const options = {
@@ -27,7 +27,7 @@ function submitBlog(e){
     body: JSON.stringify(parseData)
   }
 
-  fetch(`http://localhost:3000`, options)
+  fetch('http://localhost:3000/blog', options)
   .then(r => r.json()
   .then(() => displayData(parseData))
   .catch(console.warn)
