@@ -8,3 +8,8 @@ btn.addEventListener('click', function(){
 imageModalCloseBtn.addEventListener('click', function(){
   modalDlg.classList.remove('is-active');
 }); 
+
+var cancelButton = document.querySelector('.close-modal');
+cancelButton.addEventListener('click', function (){
+  modalDlg.classList.remove('is-active');
+});
