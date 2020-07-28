@@ -78,7 +78,6 @@ function submitBlog(e){
 
 function displayData (data) {
   const results = document.querySelector(".results")
-  debugger
   for (let i = 0; i < data.blog.length; i++) {
   // create card
   const card = document.createElement("div")
