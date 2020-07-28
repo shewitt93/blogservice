@@ -102,7 +102,7 @@ function displayData (data) {
           // append inner div for camera make
           const cameraType = document.createElement("p")
           cameraType.setAttribute("class", "card-footer-item")
-          cameraType.textContent = data.cameraType;
+          cameraType.textContent = data.cameratype;
           metadataContainer.appendChild(cameraType)
           // append inner div for lens
           const lens = document.createElement("p")
