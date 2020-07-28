@@ -11,13 +11,11 @@ const blog = [
     {title: "angus", text: "hello", type: "Digital", cameratype: "Canon",
     lenstype: "50mm f/1.8", image: "C:\fakepath\angus_photo.jpg", comments: [{name: "Simon", comment: "Hello Angus"}, {name: "Despoiner", comment: "I love JS"}, {name: "Hannah", comment: "I love HTML"}]},
 ]
-
 const port = 3000;
 // root route
 server.get('/', (req, res) => res.send('Hello, client!'))
 //search route
 server.get('/blog', (req, res)=> res.send(JSON.stringify({ blog })))
-
 // Create new blog post route
 server.post('/blog', (req, res) => {
   const newBlog = JSON.parse(req.body);
