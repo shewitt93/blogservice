@@ -2,6 +2,7 @@ const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
 const image = document.querySelector("#userfile")
 const search = document.getElementById("search");
+
 // const url = http://localhost:3000/
 
 // const url = http://localhost:3000/
@@ -21,7 +22,7 @@ getAllBlogs();
 function getAllBlogs(){
     fetch('http://localhost:3000/blog')
         .then(r => r.json())
-        .then(displayData)
+        // .then(appendBlogs) // need to append blogs to site
         .catch(console.warn)
 };
 
@@ -51,7 +52,7 @@ File.prototype.convertToBase64 = function(){
 //   });
 
 function submitBlog(e){
-  // e.preventDefault();
+  e.preventDefault();
   const parseData = {
     title: form.title.value,
     text: form.caption.value,
@@ -69,8 +70,8 @@ function submitBlog(e){
 
   fetch('http://localhost:3000/blog', options)
   .then(r => r.json())
-  .then(() => getAllBlogs())
-  // .then(() => displayData(parseData))
+  .then(() => displayData(parseData))
+  .then(() => addEvent())
   .catch(console.warn)
   }
 
@@ -78,19 +79,18 @@ function submitBlog(e){
 
 function displayData (data) {
   const results = document.querySelector(".results")
-  for (let i = 0; i < data.blog.length; i++) {
   // create card
   const card = document.createElement("div")
   card.setAttribute("class", "card column is-half")
       // append inner div for card image
       const cardImage = document.createElement("img")
       cardImage.setAttribute("class", "card-image")
-      cardImage.src = data.blog[i].image;
+      cardImage.src = data.image;
       card.appendChild(cardImage)
       // append inner div for title
       const cardTitle = document.createElement("p")
       cardTitle.setAttribute("class", "title is-4")
-      cardTitle.textContent = data.blog[i].title;
+      cardTitle.textContent = data.title;
       card.appendChild(cardTitle)
       // append inner div for metadata
       const metadataContainer = document.createElement("div")
@@ -99,29 +99,81 @@ function displayData (data) {
           // append inner div for camera mode
           const cameraMode = document.createElement("p")
           cameraMode.setAttribute("class", "card-footer-item")
-          cameraMode.textContent = data.blog[i].type;
+          cameraMode.textContent = data.type;
           metadataContainer.appendChild(cameraMode)
           // append inner div for camera make
           const cameraType = document.createElement("p")
           cameraType.setAttribute("class", "card-footer-item")
-          cameraType.textContent = data.blog[i].cameratype;
+          cameraType.textContent = data.cameratype;
           metadataContainer.appendChild(cameraType)
           // append inner div for lens
           const lens = document.createElement("p")
           lens.setAttribute("class", "card-footer-item")
-          lens.textContent = data.blog[i].lenstype;
+          lens.textContent = data.lenstype;
           metadataContainer.appendChild(lens)
-      // append inner div for text body
-      const caption = document.createElement("div")
-      caption.setAttribute("class", "content")
-      caption.textContent = data.blog[i].text;
-      card.appendChild(caption)
+          // append inner div for text body
+          const caption = document.createElement("div")
+          caption.setAttribute("class", "content")
+          caption.textContent = data.text;
+          card.appendChild(caption)
+          // append comment bar label
+          const commentLabel = document.createElement("label")
+          commentLabel.setAttribute("for", "commentText")
+          commentLabel.textContent = "Leave a comment: "
+          card.appendChild(commentLabel)
+          //append comment textbar
+          const commentText = document.createElement("textarea")
+          commentText.setAttribute("id", "commentText")
+          commentText.setAttribute("maxlength", "200")
+          card.appendChild(commentText)
+          //append leave comment button
+          const commentButton = document.createElement("button")
+          commentButton.setAttribute("class", "button is-success")
+          commentButton.setAttribute("id", "commentButton")
+          commentButton.textContent = "Comment"
+          card.appendChild(commentButton)
+          //append leave comment section
+          const commentSec = document.createElement("div")
+          commentSec.setAttribute("id", "commentSec")
+          card.appendChild(commentSec)
 
     results.append(card);
-  }
+
 }
 
 async function generatebase64() {
     const base64 = await image.files[0].convertToBase64()
       base64img = base64.result
   }
+
+function addEvent () {
+  const comment = document.getElementById("commentButton")
+  comment.addEventListener("click", submitComment)
+}
+
+
+function submitComment(e){
+  e.preventDefault();
+  const commentInput = document.getElementById("commentText")
+  const parseData = {
+    comment: commentInput.value
+  };
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(parseData)
+  };
+  console.log(options);
+
+  fetch('http://localhost:3000/blog', options)
+  .then(r => r.json())
+  .then(() => displayComment(parseData))
+  .catch(console.warn)
+}
+
+function displayComment (data) {
+  const section = document.querySelector("#commentSec")
+  const addComment = document.createElement("p")
+  addComment.textContent = data.comment
+  section.append(addComment)
+}
