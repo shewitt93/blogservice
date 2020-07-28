@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BlogService</title>
+    <title>Fotographiq</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="output.css">
@@ -15,7 +15,7 @@
 
 
     <header>
-      <h1 id="header" class="title is-1">BlogName</h1>
+      <h1 id="header" class="title is-1">Fotographiq</h1>
     </header>
 
 
@@ -48,11 +48,9 @@
           <a class="navbar-item">
             Section2
           </a>
-          <form id="searchform">
-            <input id="input" type="text"  placeholder="📷"></input>
-            <input id="search" type="submit" value="Search"></input>
-          </form>
-          </a>
+          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="📷">
+           
+          
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
@@ -124,7 +122,7 @@
 
 
 
-      <div class="columns is-multiline results">
+      <div class="columns is-multiline results" id="results">
         <!-- results is a custom secondary class -->
         <!-- we append the new elements HERE -->
       </div>
