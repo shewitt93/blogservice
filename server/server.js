@@ -9,7 +9,7 @@ server.use(bodyParser.text());
 // My blogs resource
 const blog = [
     {title: "angus", text: "hello", type: "Digital", cameratype: "Canon",
-    lenstype: "50mm f/1.8", image: "C:\fakepath\angus_photo.jpg"},
+    lenstype: "50mm f/1.8", image: "C:\fakepath\angus_photo.jpg", comments: [{name: "Simon", comment: "Hello Angus"}, {name: "Despoiner", comment: "I love JS"}, {name: "Hannah", comment: "I love HTML"}]},
 ]
 
 const port = 3000;
