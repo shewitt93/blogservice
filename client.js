@@ -2,7 +2,6 @@ const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
 const image = document.querySelector("#userfile")
 const search = document.getElementById("search");
-
 // const url = http://localhost:3000/
 
 // const url = http://localhost:3000/
@@ -16,13 +15,15 @@ submit.addEventListener('click', submitBlog)
 image.addEventListener('change', generatebase64)
 var base64img;
 
+let clicks = 0;
+
 // Fetch all blog posts as soon as app is loaded
 getAllBlogs();
 
 function getAllBlogs(){
     fetch('http://localhost:3000/blog')
         .then(r => r.json())
-        // .then(appendBlogs) // need to append blogs to site
+        .then(displayData)
         .catch(console.warn)
 };
 
@@ -51,8 +52,11 @@ File.prototype.convertToBase64 = function(){
 //       .catch((err) => console.warn(err));
 //   });
 
+
 function submitBlog(e){
-  e.preventDefault();
+  // e.preventDefault();
+  clicks++;
+  console.log(clicks);
   const parseData = {
     title: form.title.value,
     text: form.caption.value,
@@ -60,18 +64,20 @@ function submitBlog(e){
     cameratype: form.camera.value,
     lenstype: form.lens.value,
     image: base64img, //returns a string of a path e.g."C:\fakepath\Blossom.gif"
-    comments: []
+    id:clicks,
+    comments:[]
   };
 
   const options = {
     method: 'POST',
     body: JSON.stringify(parseData)
   };
+  console.log(options);
 
   fetch('http://localhost:3000/blog', options)
   .then(r => r.json())
-  .then(() => displayData(parseData))
-  .then(() => addEvent())
+  .then(() => getAllBlogs())
+  // .then(() => displayData(parseData))
   .catch(console.warn)
   }
 
@@ -79,18 +85,21 @@ function submitBlog(e){
 
 function displayData (data) {
   const results = document.querySelector(".results")
+  for (let i = 0; i < data.blog.length; i++) {
   // create card
   const card = document.createElement("div")
+  card.setAttribute("id", `sec${i}`)
   card.setAttribute("class", "card column is-half")
+
       // append inner div for card image
       const cardImage = document.createElement("img")
       cardImage.setAttribute("class", "card-image")
-      cardImage.src = data.image;
+      cardImage.src = data.blog[i].image;
       card.appendChild(cardImage)
       // append inner div for title
       const cardTitle = document.createElement("p")
       cardTitle.setAttribute("class", "title is-4")
-      cardTitle.textContent = data.title;
+      cardTitle.textContent = data.blog[i].title;
       card.appendChild(cardTitle)
       // append inner div for metadata
       const metadataContainer = document.createElement("div")
@@ -99,46 +108,50 @@ function displayData (data) {
           // append inner div for camera mode
           const cameraMode = document.createElement("p")
           cameraMode.setAttribute("class", "card-footer-item")
-          cameraMode.textContent = data.type;
+          cameraMode.textContent = data.blog[i].type;
           metadataContainer.appendChild(cameraMode)
           // append inner div for camera make
           const cameraType = document.createElement("p")
           cameraType.setAttribute("class", "card-footer-item")
-          cameraType.textContent = data.cameratype;
+          cameraType.textContent = data.blog[i].cameratype;
           metadataContainer.appendChild(cameraType)
           // append inner div for lens
           const lens = document.createElement("p")
           lens.setAttribute("class", "card-footer-item")
-          lens.textContent = data.lenstype;
+          lens.textContent = data.blog[i].lenstype;
           metadataContainer.appendChild(lens)
-          // append inner div for text body
-          const caption = document.createElement("div")
-          caption.setAttribute("class", "content")
-          caption.textContent = data.text;
-          card.appendChild(caption)
-          // append comment bar label
-          const commentLabel = document.createElement("label")
-          commentLabel.setAttribute("for", "commentText")
+      // append inner div for text body
+      const caption = document.createElement("div")
+      caption.setAttribute("class", "content")
+      caption.textContent = data.blog[i].text;
+      card.appendChild(caption)
+      // comment section
+      const commentLabel = document.createElement("label")
+          commentLabel.setAttribute("for", `commentText${i}`)
           commentLabel.textContent = "Leave a comment: "
           card.appendChild(commentLabel)
           //append comment textbar
           const commentText = document.createElement("textarea")
-          commentText.setAttribute("id", "commentText")
+          commentText.setAttribute("id", `commentText${i}`)
           commentText.setAttribute("maxlength", "200")
           card.appendChild(commentText)
           //append leave comment button
           const commentButton = document.createElement("button")
           commentButton.setAttribute("class", "button is-success")
-          commentButton.setAttribute("id", "commentButton")
+          commentButton.setAttribute("id", `commentButton${i}`)
           commentButton.textContent = "Comment"
           card.appendChild(commentButton)
           //append leave comment section
           const commentSec = document.createElement("div")
-          commentSec.setAttribute("id", "commentSec")
+          commentSec.setAttribute("id", `commentSec${i}`)
           card.appendChild(commentSec)
-
     results.append(card);
 
+    let comment = document.getElementById(`commentButton${i}`)
+    comment.addEventListener("click", (e) => {
+      submitComment(e,i)
+    })
+  }
 }
 
 async function generatebase64() {
@@ -146,32 +159,30 @@ async function generatebase64() {
       base64img = base64.result
   }
 
-function addEvent () {
-  const comment = document.getElementById("commentButton")
-  comment.addEventListener("click", submitComment)
-}
+  function submitComment(e,a){
+    e.preventDefault();
+    console.log(a);
+    const commentInput = document.getElementById(`commentText${a}`)
+    const parseData = {
+      comment: commentInput.value,
+      id: `${a}`
+    };
 
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(parseData)
+    };
+    console.log(options);
 
-function submitComment(e){
-  e.preventDefault();
-  const commentInput = document.getElementById("commentText")
-  const parseData = {
-    comment: commentInput.value
-  };
+    fetch('http://localhost:3000/blog/comments', options)
+    .then(r => r.json())
+    .then(() => displayComment(parseData))
+    .catch(console.warn)
+  }
 
-  const options = {
-    method: 'POST',
-    body: JSON.stringify(parseData)
-  };
-
-  fetch('http://localhost:3000/blog/comments', options)
-  .then(r => r.json())
-  .then(() => displayComment(parseData))
-  .catch(console.warn)
-}
-
-function displayComment (data) {
-  const section = document.querySelector("#commentSec")
+  function displayComment (data) {
+    debugger
+  const section = document.querySelector(`#commentSec${data.id}`)
   const addComment = document.createElement("p")
   addComment.textContent = data.comment
   section.append(addComment)
