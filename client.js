@@ -59,14 +59,14 @@ function submitBlog(e){
     type: form.style.value,
     cameratype: form.camera.value,
     lenstype: form.lens.value,
-    image: base64img //returns a string of a path e.g."C:\fakepath\Blossom.gif"
+    image: base64img, //returns a string of a path e.g."C:\fakepath\Blossom.gif"
+    comments: []
   };
 
   const options = {
     method: 'POST',
     body: JSON.stringify(parseData)
   };
-  console.log(options);
 
   fetch('http://localhost:3000/blog', options)
   .then(r => r.json())
@@ -163,9 +163,8 @@ function submitComment(e){
     method: 'POST',
     body: JSON.stringify(parseData)
   };
-  console.log(options);
 
-  fetch('http://localhost:3000/blog', options)
+  fetch('http://localhost:3000/blog/comments', options)
   .then(r => r.json())
   .then(() => displayComment(parseData))
   .catch(console.warn)
