@@ -23,7 +23,7 @@ server.post('/blog', (req, res) => {
   res.send(JSON.stringify(newBlog))
 })
 
-server.get('/blog/comments/:i', (req, res)=> {
+server.get('/blog/comments', (req, res)=> {
   res.send(JSON.stringify(blog[0].comments))
 })
 

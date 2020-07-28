@@ -2,14 +2,6 @@ const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
 const image = document.querySelector("#userfile")
 const search = document.getElementById("search");
-// const url = http://localhost:3000/
-
-// const url = http://localhost:3000/
-
-// function setData (data) {
-//   localStorage.setItem("data", JSON.stringify(data))
-//   location.pathname = "/index.html"
-// }
 
 submit.addEventListener('click', submitBlog)
 image.addEventListener('change', generatebase64)
@@ -63,7 +55,7 @@ function submitBlog(e){
     type: form.style.value,
     cameratype: form.camera.value,
     lenstype: form.lens.value,
-    image: base64img, //returns a string of a path e.g."C:\fakepath\Blossom.gif"
+    image: base64img,
     id:clicks,
     comments:[]
   };
@@ -77,11 +69,9 @@ function submitBlog(e){
   fetch('http://localhost:3000/blog', options)
   .then(r => r.json())
   .then(() => getAllBlogs())
-  // .then(() => displayData(parseData))
   .catch(console.warn)
   }
 
-//   // parseData.map((e , index)=> {console.log(e)})
 
 function displayData (data) {
   const results = document.querySelector(".results")
@@ -181,7 +171,6 @@ async function generatebase64() {
   }
 
   function displayComment (data) {
-    debugger
   const section = document.querySelector(`#commentSec${data.id}`)
   const addComment = document.createElement("p")
   addComment.textContent = data.comment
