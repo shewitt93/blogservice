@@ -1,11 +1,15 @@
 const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
 const image = document.querySelector("#userfile")
+const giff = document.querySelector('#gifentry')
 const search = document.getElementById("search");
+
 
 submit.addEventListener('click', submitBlog)
 image.addEventListener('change', generatebase64)
+giff.addEventListener('change', getGiff)
 var base64img;
+var newGif;
 
 let clicks = 0;
 
@@ -44,10 +48,11 @@ File.prototype.convertToBase64 = function(){
 //       .catch((err) => console.warn(err));
 //   });
 
-
 function submitBlog(e){
   // e.preventDefault();
   clicks++;
+
+
   console.log(clicks);
   const parseData = {
     title: form.title.value,
@@ -56,6 +61,7 @@ function submitBlog(e){
     cameratype: form.camera.value,
     lenstype: form.lens.value,
     image: base64img,
+    gif: newGif,
     id:clicks,
     comments:[]
   };
@@ -67,11 +73,20 @@ function submitBlog(e){
   console.log(options);
 
   fetch('http://localhost:3000/blog', options)
+  // .then(console.log)
   .then(r => r.json())
   .then(() => getAllBlogs())
   .catch(console.warn)
   }
 
+function getGiff() {
+  const gifSearchTerm = document.getElementById("gifentry").value;
+  const giphy_url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchTerm}&api_key=4vehjptTgnajwmVWXFcixiyVUWg8Gu4D&limit=5`
+  fetch(giphy_url)
+  .then(resp => resp.json())
+  .then((data) => displayGif(data))
+  .catch(err => console.warn('Something went wrong!', err))
+}
 
 function displayData (data) {
   const results = document.querySelector(".results")
@@ -84,8 +99,16 @@ function displayData (data) {
       // append inner div for card image
       const cardImage = document.createElement("img")
       cardImage.setAttribute("class", "card-image")
+      if (!!data.blog[i].image){
       cardImage.src = data.blog[i].image;
       card.appendChild(cardImage)
+    } else if (!!data.blog[i].gif) {
+      cardImage.src = data.blog[i].gif;
+      card.appendChild(cardImage)
+    } else {
+      cardImage.src = "https://via.placeholder.com/192";
+      card.appendChild(cardImage)
+    }
       // append inner div for title
       const cardTitle = document.createElement("p")
       cardTitle.setAttribute("class", "title is-4")
@@ -169,6 +192,11 @@ async function generatebase64() {
     .then(() => displayComment(parseData))
     .catch(console.warn)
   }
+
+  function displayGif(data){
+      // console.log(data.data[Math.floor(Math.random()*5)].images.original.url)
+      newGif = data.data[Math.floor(Math.random()*5)].images.original.url
+}
 
   function displayComment (data) {
   const section = document.querySelector(`#commentSec${data.id}`)
