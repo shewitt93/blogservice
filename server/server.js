@@ -4,7 +4,26 @@ const bodyParser = require('body-parser');
 
 const server = express();
 server.use(cors());
-server.use(bodyParser.text());
+server.use(express.json())
+server.use(bodyParser.text({
+  extended: true,
+  limit: '50mb',
+  parameterLimit: 10000000
+}));
+server.use(bodyParser.urlencoded({
+  extended: true,
+  limit: '50mb',
+  parameterLimit: 10000000
+}))
+server.use(bodyParser.json({
+  limit: '50mb',
+  parameterLimit: 10000000
+}))
+ server.use(bodyParser.raw({
+  limit: '50mb',
+  inflate: true,
+  parameterLimit: 10000000
+}))
 
 // My blogs resource
 const blog = [
@@ -39,6 +58,12 @@ server.post('/blog/emojis', (req, res) => {
   res.send(JSON.stringify(newEmoji))
 })
 
+server.delete('/blog', (req, res)=> {
+  const deletePost = JSON.parse(req.body);
+  blog.splice(deletePost.id,1)
+  console.log(blog)
+  res.send(JSON.stringify(deletePost))
+})
 
 // // Create route for search
 // server.get("/blog", (req,res)=> {

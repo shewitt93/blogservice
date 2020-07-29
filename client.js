@@ -120,11 +120,24 @@ function displayData (data) {
       cardImage.src = "https://via.placeholder.com/192";
       card.appendChild(cardImage)
     }
-      // append inner div for title
-      const cardTitle = document.createElement("p")
-      cardTitle.setAttribute("class", "title is-4")
-      cardTitle.textContent = data.blog[i].title;
-      card.appendChild(cardTitle)
+    // append inner div for title
+     const titlesec = document.createElement('div')
+     card.appendChild(titlesec)
+     const cardTitle = document.createElement("span")
+     cardTitle.setAttribute("class", "title is-4")
+     cardTitle.textContent = data.blog[i].title;
+     titlesec.appendChild(cardTitle)
+      // edit and delete buttons
+     const editButton = document.createElement('button')
+     editButton.setAttribute("class", "button is-small")
+     editButton.setAttribute("id", `editButton${i}`)
+     editButton.textContent = "Edit"
+     titlesec.appendChild(editButton)
+     const deleteButton = document.createElement('button')
+     deleteButton.setAttribute("class", "button is-small")
+     deleteButton.setAttribute("id", `deleteButton${i}`)
+     deleteButton.textContent = "Delete"
+     titlesec.appendChild(deleteButton)
       // append inner div for metadata
       const metadataContainer = document.createElement("div")
       metadataContainer.setAttribute("class", "card-footer")
@@ -220,8 +233,31 @@ function displayData (data) {
     comment.addEventListener("click", (e) => {
       submitComment(e,i)
     })
+
+    let deleteButtons = document.getElementById(`deleteButton${i}`)
+    deleteButtons.addEventListener("click", (e) => {
+      deletePost(e,i)
+    })
   }
 }
+
+function deletePost(e,a){
+  console.log(`Trying to delete post${a}`)
+
+  const parseData = {
+    id: `${a}`
+  };
+  const options = {
+    method: 'DELETE',
+    body: JSON.stringify(parseData)
+  };
+
+  fetch('http://localhost:3000/blog', options)
+      .then(r => r.json())
+      .then(() => getAllBlogs())
+      .catch(console.warn)
+};
+
 
 async function generatebase64() {
     const base64 = await image.files[0].convertToBase64()
