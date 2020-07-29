@@ -8,10 +8,15 @@ const search = document.getElementById("search");
 submit.addEventListener('click', submitBlog)
 image.addEventListener('change', generatebase64)
 giff.addEventListener('change', getGiff)
+
+
 var base64img;
 var newGif;
-
 let clicks = 0;
+var counterStar = [];
+var counterThumb = [];
+var counterHeart = [];
+
 
 // Fetch all blog posts as soon as app is loaded
 getAllBlogs();
@@ -52,8 +57,6 @@ function submitBlog(e){
   // e.preventDefault();
   clicks++;
 
-
-  console.log(clicks);
   const parseData = {
     title: form.title.value,
     text: form.caption.value,
@@ -62,6 +65,7 @@ function submitBlog(e){
     lenstype: form.lens.value,
     image: base64img,
     gif: newGif,
+    emojiCount:"",
     id:clicks,
     comments:[]
   };
@@ -70,7 +74,6 @@ function submitBlog(e){
     method: 'POST',
     body: JSON.stringify(parseData)
   };
-  console.log(options);
 
   fetch('http://localhost:3000/blog', options)
   // .then(console.log)
@@ -80,7 +83,8 @@ function submitBlog(e){
   }
 
 function getGiff() {
-  const gifSearchTerm = document.getElementById("gifentry").value;
+  const gifSearchTerm = document.getElementById("gifentry").value.toLowerCase();
+  console.log(gifSearchTerm)
   const giphy_url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchTerm}&api_key=4vehjptTgnajwmVWXFcixiyVUWg8Gu4D&limit=5`
   fetch(giphy_url)
   .then(resp => resp.json())
@@ -89,8 +93,14 @@ function getGiff() {
 }
 
 function displayData (data) {
+
   const results = document.querySelector(".results")
   for (let i = 0; i < data.blog.length; i++) {
+
+  counterStar[i] = 0
+  counterThumb[i] = 0
+  counterHeart[i] = 0
+
   // create card
   const card = document.createElement("div")
   card.setAttribute("id", `sec${i}`)
@@ -99,6 +109,7 @@ function displayData (data) {
       // append inner div for card image
       const cardImage = document.createElement("img")
       cardImage.setAttribute("class", "card-image")
+
       if (!!data.blog[i].image){
       cardImage.src = data.blog[i].image;
       card.appendChild(cardImage)
@@ -138,6 +149,38 @@ function displayData (data) {
       caption.setAttribute("class", "content")
       caption.textContent = data.blog[i].text;
       card.appendChild(caption)
+
+      const emojiContainer = document.createElement("div")
+          emojiContainer.setAttribute("id", "emojiContainer")
+          card.appendChild(emojiContainer)
+            // append emoji reactions
+            const emojiReactStar = document.createElement("a")
+            emojiReactStar.setAttribute("id", `starEmoji${i}`)
+            emojiReactStar.textContent = "😀"
+            emojiContainer.appendChild(emojiReactStar)
+            const starCount = document.createElement("span")
+            starCount.setAttribute("id", `starCount${i}`)
+            starCount.textContent = `${counterStar[i]}`
+            emojiContainer.appendChild(starCount)
+
+            const emojiReactThumb = document.createElement("a")
+            emojiReactThumb.setAttribute("id", `thumbEmoji${i}`)
+            emojiReactThumb.textContent = "👍"
+            emojiContainer.appendChild(emojiReactThumb)
+            const thumbCount = document.createElement("span")
+            thumbCount.setAttribute("id", `thumbCount${i}`)
+            thumbCount.textContent = `${counterThumb[i]}`
+            emojiContainer.appendChild(thumbCount)
+
+            const emojiReactHeart = document.createElement("a")
+            emojiReactHeart.setAttribute("id", `heartEmoji${i}`)
+            emojiReactHeart.textContent = "💘"
+            emojiContainer.appendChild(emojiReactHeart)
+            const heartCount = document.createElement("span")
+            heartCount.setAttribute("id", `heartCount${i}`)
+            heartCount.textContent = `${counterHeart[i]}`
+            emojiContainer.appendChild(heartCount)
+
       // comment section
       const commentLabel = document.createElement("label")
           commentLabel.setAttribute("for", `commentText${i}`)
@@ -160,6 +203,19 @@ function displayData (data) {
           card.appendChild(commentSec)
     results.append(card);
 
+    const star = document.getElementById(`starEmoji${i}`)
+    const thumb = document.getElementById(`thumbEmoji${i}`)
+    const heart = document.getElementById(`heartEmoji${i}`)
+    star.addEventListener("click", (e) => {
+      emojiCounter(e,i)
+    })
+    thumb.addEventListener("click", (e) => {
+      emojiCounter(e,i)
+    })
+    heart.addEventListener("click", (e) => {
+      emojiCounter(e,i)
+    })
+
     let comment = document.getElementById(`commentButton${i}`)
     comment.addEventListener("click", (e) => {
       submitComment(e,i)
@@ -172,20 +228,48 @@ async function generatebase64() {
       base64img = base64.result
   }
 
+  function emojiCounter(e,a){
+    if (e.path[0].id === `starEmoji${a}`){
+    ++counterStar[a];
+  } else if  (e.path[0].id === `thumbEmoji${a}`){
+    ++counterThumb[a];
+  } else if (e.path[0].id === `heartEmoji${a}`){
+    ++counterHeart[a];
+  }
+
+  starCounter = document.getElementById(`starCount${a}`)
+  starCounter.textContent = `+ ${counterStar[a]}`
+  thumbCounter = document.getElementById(`thumbCount${a}`)
+  thumbCounter.textContent = `+ ${counterThumb[a]}`
+  heartCounter = document.getElementById(`heartCount${a}`)
+  heartCounter.textContent = `+ ${counterHeart[a]}`
+
+    const parseData = {
+      emojiStarCount: [starCounter.textContent, thumbCounter.textContent, heartCounter.textContent],
+      id: `${a}`
+    };
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(parseData)
+    };
+    fetch('http://localhost:3000/blog/emojis', options)
+    .then(r => r.json())
+    // .then(() => displayComment(parseData))
+    .catch(console.warn)
+  }
+
+
   function submitComment(e,a){
     e.preventDefault();
-    console.log(a);
     const commentInput = document.getElementById(`commentText${a}`)
     const parseData = {
       comment: commentInput.value,
       id: `${a}`
     };
-
     const options = {
       method: 'POST',
       body: JSON.stringify(parseData)
     };
-    console.log(options);
 
     fetch('http://localhost:3000/blog/comments', options)
     .then(r => r.json())
