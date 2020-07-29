@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BlogName</title>
     <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
+    <title>Fotographiq</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="output.css">
@@ -12,13 +12,11 @@
     <script defer src="frontend.js"></script>
   </head>
   <body>
-​
-​
+
     <header>
-      <h1 id="header" class="title is-1">BlogName</h1>
+      <h1 id="header" class="title is-1">Fotographiq</h1>
     </header>
-​
-​
+
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div id="navigation" class="navbar-menu">
         <div class="navbar-start">
@@ -48,10 +46,11 @@
           <a class="navbar-item">
             Section2
           </a>
+
         </div>
 
         <input type="text" class="input" id="myInput" onkeyup="myFunction()" placeholder="📷">
-​
+
         <div class="navbar-end">
           <!-- </form> -->
           <div class="navbar-item">
@@ -60,8 +59,8 @@
         </div>
       </div>
     </nav>
-​
-​
+
+
     <main>
       <form id="blogForm">
       <div id="modal-ter" class="modal">
@@ -73,16 +72,16 @@
           </header>
           <section class="modal-card-body">
             <div class="content">
-​
-​
+
+
               <input type="text" id="title" name="title" placeholder="Post title..."/>
-​
+
               <label for="style">Mode:</label>
               <select name="style" id="style">
                 <option value="Digital">Digital</option>
                 <option value="Analog">Analog</option>
-​
-​
+
+
               </select>
               <label for="camera">Camera:</label>
               <select name="Camera type" id="camera">
@@ -98,8 +97,8 @@
                 <option value="150 f/2.5">150 f/2.5</option>
                 <option value="35mm f/1">35mm f/1</option>
               </select>
-​
-​
+
+
               <br>
               <br>
               <label for="userfile">Choose file:</label>
@@ -111,8 +110,8 @@
               <br>
               <textarea class="textarea" maxlength = "300" placeholder="Enter Text" rows="10" id="caption" name="caption"></textarea>
               <!-- 300 word limit set here -->
-​
-​
+
+
             </div>
           </section>
           <footer class="modal-card-foot">
@@ -122,16 +121,15 @@
         </div>
       </div>
       </form>
-​
-​
-​
-      <div class="columns is-multiline results">
+
+
+      <div class="columns is-multiline results" id="results">
         <!-- results is a custom secondary class -->
         <!-- we append the new elements HERE -->
       </div>
     </main>
-​
-​
+
+
     <footer class="footer page-footer">
       <div class="content has-text-centered">
         <p>
@@ -144,6 +142,6 @@
         </p>
       </div>
     </footer>
-​
+
   </body>
 </html>

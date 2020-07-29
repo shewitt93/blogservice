@@ -22,12 +22,25 @@ function myFunction() {
   var filter = input.value.toUpperCase();
   var div = document.getElementsByClassName("card");
   var card = document.getElementsByClassName('card-footer');
+
   // add more  docqueryselall? or add class of cam to each part with a <p>
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < div.length; i++) {
     p = card[i].getElementsByTagName("p")[0];
     console.log(p)
     txtValue = p.textContent || p.innerText;
+
+  // console.log(card)
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < div.length; i++) {
+    
+    p = card[i].getElementsByTagName("p")[0];
+    console.log(p)
+    
+    txtValue = p.textContent || p.innerText;
+    
+
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       div[i].style.display = "";
     } else {
@@ -35,3 +48,5 @@ function myFunction() {
     }
   }
 }
+
+
