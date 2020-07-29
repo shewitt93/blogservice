@@ -43,18 +43,9 @@ File.prototype.convertToBase64 = function(){
  }.bind(this));
 };
 
-// search.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   question = form.inputMode.value;
-//   console.log({question})
-//   fetch(`http://localhost:3000/search?q=${question}`)
-//       .then((r) => r.json())
-//       .then((data) => displayData(data))
-//       .catch((err) => console.warn(err));
-//   });
-
 function submitBlog(e){
-  
+  e.preventDefault();
+
   clicks++;
 
   const parseData = {
@@ -93,8 +84,8 @@ function getGiff() {
 }
 
 function displayData (data) {
-
   const results = document.querySelector(".results")
+  results.textContent = ''
   for (let i = 0; i < data.blog.length; i++) {
 
   counterStar[i] = 0

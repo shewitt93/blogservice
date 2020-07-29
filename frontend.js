@@ -34,12 +34,12 @@ function myFunction() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < div.length; i++) {
-    
+
     p = card[i].getElementsByTagName("p")[0];
     console.log(p)
-    
+
     txtValue = p.textContent || p.innerText;
-    
+
 
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       div[i].style.display = "";
@@ -49,4 +49,4 @@ function myFunction() {
   }
 }
 
-
+}
