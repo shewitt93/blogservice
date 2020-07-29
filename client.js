@@ -22,7 +22,7 @@ var counterHeart = [];
 getAllBlogs();
 
 function getAllBlogs(){
-    fetch('http://localhost:3000/blog')
+    fetch('http://localhost:3000/blogs')
         .then(r => r.json())
         .then(displayData)
         .catch(console.warn)
@@ -45,6 +45,7 @@ File.prototype.convertToBase64 = function(){
 
 function submitBlog(e){
   e.preventDefault();
+
   clicks++;
 
   const parseData = {
@@ -228,7 +229,7 @@ function displayData (data) {
     deleteButtons.addEventListener("click", (e) => {
       deletePost(e,i)
     })
-  } 
+  }
 }
 
 function deletePost(e,a){
