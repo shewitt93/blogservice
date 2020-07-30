@@ -10,6 +10,7 @@ image.addEventListener('change', generatebase64)
 giff.addEventListener('input', getGiff)
 
 
+
 var base64img;
 var newGif;
 let clicks = 0;
@@ -113,20 +114,26 @@ function displayData (data) {
     }
     // append inner div for title
      const titlesec = document.createElement('div')
+
      titlesec.setAttribute("class", "titleSec")
      card.appendChild(titlesec)
      const cardTitle = document.createElement("span")
      cardTitle.setAttribute("class", "title is-4 has-text-centered")
+
      cardTitle.textContent = data.blog[i].title;
      titlesec.appendChild(cardTitle)
       // edit and delete buttons
      const editButton = document.createElement('button')
+
      editButton.setAttribute("class", "button is-small editbutton")
+
      editButton.setAttribute("id", `editButton${i}`)
      editButton.textContent = "Edit"
      titlesec.appendChild(editButton)
      const deleteButton = document.createElement('button')
+
      deleteButton.setAttribute("class", "button is-small deletebutton")
+
      deleteButton.setAttribute("id", `deleteButton${i}`)
      deleteButton.textContent = "Delete"
      titlesec.appendChild(deleteButton)
@@ -136,17 +143,23 @@ function displayData (data) {
       card.appendChild(metadataContainer)
           // append inner div for camera mode
           const cameraMode = document.createElement("p")
+
           cameraMode.setAttribute("class", "card-footer-item cameraMode")
+
           cameraMode.textContent = data.blog[i].type;
           metadataContainer.appendChild(cameraMode)
           // append inner div for camera make
           const cameraType = document.createElement("p")
+
           cameraType.setAttribute("class", "card-footer-item cameraType")
+
           cameraType.textContent = data.blog[i].cameratype;
           metadataContainer.appendChild(cameraType)
           // append inner div for lens
           const lens = document.createElement("p")
+
           lens.setAttribute("class", "card-footer-item lensType")
+
           lens.textContent = data.blog[i].lenstype;
           metadataContainer.appendChild(lens)
       // append inner div for text body
@@ -187,21 +200,26 @@ function displayData (data) {
             emojiContainer.appendChild(heartCount)
 
       // comment section
+
           //append comment textbar
           const commentText = document.createElement("textarea")
           commentText.setAttribute("id", `commentText${i}`)
           commentText.setAttribute("class", "commentTextArea")
+
           commentText.setAttribute("maxlength", "200")
           card.appendChild(commentText)
           //append leave comment button
           const commentButton = document.createElement("button")
+
           commentButton.setAttribute("class", "button cb")
+
           commentButton.setAttribute("id", `commentButton${i}`)
           commentButton.textContent = "Comment"
           card.appendChild(commentButton)
           //append leave comment section
           const commentSec = document.createElement("div")
           commentSec.setAttribute("id", `commentSec${i}`)
+
           commentSec.setAttribute("class", `commentSection`)
           card.appendChild(commentSec)
 
