@@ -1,3 +1,4 @@
+// const fetch = require('node-fetch')
 const form = document.getElementById('blogForm')
 const submit = document.getElementById('submitButton');
 const image = document.querySelector("#userfile")
