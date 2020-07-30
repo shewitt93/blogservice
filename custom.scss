@@ -1,13 +1,23 @@
-$header-color:  #ebebeb;
+$header-color: black;
 
-#header {
+body, .button {
+  font-family: 'Work Sans', sans-serif;
+  }
+
+#pageName {
   color:$header-color;
   height:100px;
-  font-family:  'Lily Script One', cursive;;
+  font-family:  'Lily Script One', cursive;
+  font-size: 100px;
+  padding: 20px;
+  height: 220px;
 }
 
 .card.column.is-half {
   height:600px;
+  // border: solid 3px black;
+  // margin: 10px;
+  // width: 45%;
 }
 
 .card-image {
@@ -18,17 +28,30 @@ $header-color:  #ebebeb;
   width: auto;
 }
 
-.title.is-4 {
-  text-align: center;
-  padding-top: 10px;
+.modal-card-body .content {
+  padding: 10px 5px 10px 5px;
 }
 
 .content {
   padding: 10px 40px 10px 40px;
 }
 
+#gifentry {
+  width: 200px;
+}
+
 #emojiContainer {
   padding-left: 40px;
+}
+
+.editbutton {
+  position: absolute;
+  right: 65px;
+}
+
+.deletebutton {
+  position: absolute;
+  right: 0px;
 }
 
 .commentTextArea {
@@ -47,4 +70,32 @@ $header-color:  #ebebeb;
     margin-top: 50px;
 }
 
+.title.is-4.has-text-centered {
+  padding-top: 10px;
+  padding-left: 40px;
+}
 // fix position of comments
+.commentTextArea {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+@media screen and (min-width: 769px) {
+  #mobile-menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .navbar-item.has-dropdown.is-hoverable {
+    display: none;
+  }
+  .menu-label {
+    margin-left: 10px;
+    font-size: 1.5em;
+  }
+  .navbar-menu {
+    display: initial;
+  }
+}

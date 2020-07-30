@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
     <title>Fotographiq</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,8 +15,26 @@
   <body>
 
     <header>
-      <h1 id="header" class="title is-1">Fotographiq</h1>
+      <h1 id="pageName">Fotographiq</h1>
     </header>
+
+    <!-- make extra menu for mobile only  -->
+    <div id="mobile-menu" class="menu">
+      <p class="menu-label">
+        Menu
+      </p>
+      <ul class="menu-list">
+      <li><a>
+        First
+      </a></li>
+      <li><a>
+        Second
+      </a></li>
+      <li><a href="#footer">
+      Contact us
+      </a></li>
+    </ul>
+    </div>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div id="navigation" class="navbar-menu">
@@ -35,21 +54,16 @@
                 Third
               </a>
               <hr class="navbar-divider">
-              <a class="navbar-item">
+              <a class="navbar-item" href="#footer">
                 Contact us
               </a>
             </div>
           </div>
           <a class="navbar-item">
-            Section1
+            <input type="text" class="input" id="myInput" onkeyup="myFunction()" placeholder="📷">
           </a>
-          <a class="navbar-item">
-            Section2
-          </a>
-
         </div>
 
-        <input type="text" class="input" id="myInput" onkeyup="myFunction()" placeholder="📷">
 
         <div class="navbar-end">
           <div class="navbar-item">
@@ -102,12 +116,15 @@
               <br>
               <label for="userfile">Choose file:</label>
               <input type="file" id="userfile" name="userfile">
+              <br>
+              <span>OR</span>
+              <br>
               <!-- should LIMIT to only accept images and no other file types -->
-              <label for="gifentry">Giphy URL:</label>
-              <input type="text" id="gifentry" name="gifentry">
+              <label for="gifentry">Giphy search:</label>
+              <input type="text" id="gifentry" name="gifentry" placeholder="A random GIF will be chosen">
               <br>
               <br>
-              <textarea class="textarea" maxlength = "300" placeholder="Enter Text" rows="10" id="caption" name="caption"></textarea>
+              <textarea class="textarea" maxlength = "300" placeholder="Enter a description for your photo. Max 300 characters." rows="10" id="caption" name="caption"></textarea>
               <!-- 300 word limit set here -->
 
 
@@ -122,14 +139,14 @@
       </form>
 
 
-      <div class="columns is-multiline results" id="results">
+      <div class="columns is-8 is-multiline results" id="results">
         <!-- results is a custom secondary class -->
         <!-- we append the new elements HERE -->
       </div>
     </main>
 
 
-    <footer class="footer page-footer">
+    <footer id="footer" class="footer page-footer">
       <div class="content has-text-centered">
         <p>
           <strong>PageName</strong> by Team name. Copyrights?

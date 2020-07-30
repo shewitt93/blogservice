@@ -115,17 +115,17 @@ function displayData (data) {
      const titlesec = document.createElement('div')
      card.appendChild(titlesec)
      const cardTitle = document.createElement("span")
-     cardTitle.setAttribute("class", "title is-4")
+     cardTitle.setAttribute("class", "title is-4 has-text-centered")
      cardTitle.textContent = data.blog[i].title;
      titlesec.appendChild(cardTitle)
       // edit and delete buttons
      const editButton = document.createElement('button')
-     editButton.setAttribute("class", "button is-small")
+     editButton.setAttribute("class", "button is-small editbutton")
      editButton.setAttribute("id", `editButton${i}`)
      editButton.textContent = "Edit"
      titlesec.appendChild(editButton)
      const deleteButton = document.createElement('button')
-     deleteButton.setAttribute("class", "button is-small")
+     deleteButton.setAttribute("class", "button is-small deletebutton")
      deleteButton.setAttribute("id", `deleteButton${i}`)
      deleteButton.textContent = "Delete"
      titlesec.appendChild(deleteButton)
@@ -186,10 +186,6 @@ function displayData (data) {
             emojiContainer.appendChild(heartCount)
 
       // comment section
-      // const commentLabel = document.createElement("label")
-      //     commentLabel.setAttribute("for", `commentText${i}`)
-      //     commentLabel.textContent = "Leave a comment: "
-      //     card.appendChild(commentLabel)
           //append comment textbar
           const commentText = document.createElement("textarea")
           commentText.setAttribute("id", `commentText${i}`)
@@ -206,6 +202,7 @@ function displayData (data) {
           const commentSec = document.createElement("div")
           commentSec.setAttribute("id", `commentSec${i}`)
           card.appendChild(commentSec)
+          
     results.append(card);
 
     const star = document.getElementById(`starEmoji${i}`)
