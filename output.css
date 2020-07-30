@@ -2,24 +2,59 @@ body, .button {
   font-family: "Work Sans", sans-serif;
 }
 
+main {
+  width: 95%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+header {
+  background-color: #f3f3f3;
+  text-align: center;
+}
+
+header p {
+  padding: 20px;
+  text-align: center;
+}
+
+#showModal {
+  background-color: #3273dc;
+}
+
 #pageName {
   color: black;
-  height: 100px;
   font-family: "Lily Script One", cursive;
   font-size: 100px;
-  padding: 20px;
-  height: 220px;
+  font-weight: bold;
+  height: auto;
+  padding: 20px 20px 0px 20px;
+}
+
+#pageName {
+  /* font-family: 'Work Sans', sans-serif; */
+  font-weight: bold;
+  height: auto;
+  padding: 20px 20px 0px 20px;
+}
+
+.navbar {
+  background-color: #f3f3f3;
+  padding: 0px 10px 10px 10px;
+  position: sticky;
+  top: 0;
 }
 
 .card.column.is-half {
   height: 600px;
+  margin: auto;
+  width: 49%;
+  margin-bottom: 10px;
 }
 
 .card-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 300px;
+  background-size: cover;
+  max-height: 450px;
   width: auto;
 }
 
@@ -28,29 +63,25 @@ body, .button {
 }
 
 .content {
-  padding: 10px 40px 10px 40px;
+  padding: 5px 10px 5px 40px;
+}
+
+.titlesec {
+  padding: 10px 0px;
 }
 
 #gifentry {
   width: 200px;
 }
 
-#emojiContainer {
-  padding-left: 40px;
-}
-
 .editbutton {
   position: absolute;
-  right: 65px;
+  right: 70px;
 }
 
 .deletebutton {
   position: absolute;
-  right: 0px;
-}
-
-.commentTextArea {
-  margin-left: 40px;
+  right: 10px;
 }
 
 .results {
@@ -70,10 +101,37 @@ body, .button {
   padding-left: 40px;
 }
 
+.commentSection {
+  padding-left: 10px;
+  margin-top: 0;
+  background-color: whitesmoke;
+}
+
 .commentTextArea {
+  width: 40%;
+  position: absolute;
+  right: 120px;
+  bottom: 10px;
+}
+
+.button.cb {
   position: absolute;
   right: 10px;
   bottom: 10px;
+}
+
+#emojiContainer {
+  position: absolute;
+  left: 25px;
+  bottom: 10px;
+}
+
+.cameraMode, .cameraType, .lensType {
+  border-top: 1px solid #c4c4d4;
+}
+
+.card-footer-item:not(:last-child) {
+  border-right: 1px solid #c4c4d4;
 }
 
 @media screen and (min-width: 769px) {

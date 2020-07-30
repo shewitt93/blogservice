@@ -7,7 +7,7 @@ const search = document.getElementById("search");
 
 submit.addEventListener('click', submitBlog)
 image.addEventListener('change', generatebase64)
-giff.addEventListener('change', getGiff)
+giff.addEventListener('input', getGiff)
 
 
 var base64img;
@@ -113,6 +113,7 @@ function displayData (data) {
     }
     // append inner div for title
      const titlesec = document.createElement('div')
+     titlesec.setAttribute("class", "titleSec")
      card.appendChild(titlesec)
      const cardTitle = document.createElement("span")
      cardTitle.setAttribute("class", "title is-4 has-text-centered")
@@ -135,17 +136,17 @@ function displayData (data) {
       card.appendChild(metadataContainer)
           // append inner div for camera mode
           const cameraMode = document.createElement("p")
-          cameraMode.setAttribute("class", "card-footer-item")
+          cameraMode.setAttribute("class", "card-footer-item cameraMode")
           cameraMode.textContent = data.blog[i].type;
           metadataContainer.appendChild(cameraMode)
           // append inner div for camera make
           const cameraType = document.createElement("p")
-          cameraType.setAttribute("class", "card-footer-item")
+          cameraType.setAttribute("class", "card-footer-item cameraType")
           cameraType.textContent = data.blog[i].cameratype;
           metadataContainer.appendChild(cameraType)
           // append inner div for lens
           const lens = document.createElement("p")
-          lens.setAttribute("class", "card-footer-item")
+          lens.setAttribute("class", "card-footer-item lensType")
           lens.textContent = data.blog[i].lenstype;
           metadataContainer.appendChild(lens)
       // append inner div for text body
@@ -194,15 +195,16 @@ function displayData (data) {
           card.appendChild(commentText)
           //append leave comment button
           const commentButton = document.createElement("button")
-          commentButton.setAttribute("class", "button")
+          commentButton.setAttribute("class", "button cb")
           commentButton.setAttribute("id", `commentButton${i}`)
           commentButton.textContent = "Comment"
           card.appendChild(commentButton)
           //append leave comment section
           const commentSec = document.createElement("div")
           commentSec.setAttribute("id", `commentSec${i}`)
+          commentSec.setAttribute("class", `commentSection`)
           card.appendChild(commentSec)
-          
+
     results.append(card);
 
     const star = document.getElementById(`starEmoji${i}`)
