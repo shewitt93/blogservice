@@ -1,9 +1,48 @@
 #header {
-  color: #eb34d2;
+  color: #ebebeb;
+  height: 100px;
+  font-family: "Lily Script One", cursive;
 }
 
-#col {
-  border: 50px;
+.card.column.is-half {
+  height: 600px;
+}
+
+.card-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  width: auto;
+}
+
+.title.is-4 {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.content {
+  padding: 10px 40px 10px 40px;
+}
+
+#emojiContainer {
+  padding-left: 40px;
+}
+
+.commentTextArea {
+  margin-left: 40px;
+}
+
+.results {
+  margin-bottom: 1000px;
+}
+
+.page-footer {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  height: 50px;
+  margin-top: 50px;
 }
 
 /*# sourceMappingURL=output.css.map */

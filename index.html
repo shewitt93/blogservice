@@ -3,21 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BlogService</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
+    <title>Fotographiq</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="output.css">
-    <link rel="stylesheet" href="style.css">
     <script defer src="client.js"></script>
     <script defer src="frontend.js"></script>
   </head>
   <body>
 
-
     <header>
-      <h1 id="header" class="title is-1">BlogName</h1>
+      <h1 id="header" class="title is-1">Fotographiq</h1>
     </header>
-
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div id="navigation" class="navbar-menu">
@@ -48,15 +46,14 @@
           <a class="navbar-item">
             Section2
           </a>
-          <form id="searchform">
-            <input id="input" type="text"  placeholder="📷"></input>
-            <input id="search" type="submit" value="Search"></input>
-          </form>
-          </a>
+
         </div>
+
+        <input type="text" class="input" id="myInput" onkeyup="myFunction()" placeholder="📷">
+
         <div class="navbar-end">
           <div class="navbar-item">
-            <button id="showModal" class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true">Launch card modal</button>
+            <button id="showModal" class="button is-primary is-large modal-button" data-target="modal-ter" aria-haspopup="true">New post</button>
           </div>
         </div>
       </div>
@@ -106,6 +103,8 @@
               <label for="userfile">Choose file:</label>
               <input type="file" id="userfile" name="userfile">
               <!-- should LIMIT to only accept images and no other file types -->
+              <label for="gifentry">Giphy URL:</label>
+              <input type="text" id="gifentry" name="gifentry">
               <br>
               <br>
               <textarea class="textarea" maxlength = "300" placeholder="Enter Text" rows="10" id="caption" name="caption"></textarea>
@@ -123,8 +122,7 @@
       </form>
 
 
-
-      <div class="columns is-multiline results">
+      <div class="columns is-multiline results" id="results">
         <!-- results is a custom secondary class -->
         <!-- we append the new elements HERE -->
       </div>
