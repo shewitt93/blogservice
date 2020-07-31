@@ -177,7 +177,7 @@ function displayData (data) {
             emojiContainer.appendChild(emojiReactStar)
             const starCount = document.createElement("span")
             starCount.setAttribute("id", `starCount${i}`)
-            starCount.textContent = `${counterStar[i]}`
+            starCount.textContent = ` +${counterStar[i]}`
             emojiContainer.appendChild(starCount)
 
             const emojiReactThumb = document.createElement("a")
@@ -186,7 +186,7 @@ function displayData (data) {
             emojiContainer.appendChild(emojiReactThumb)
             const thumbCount = document.createElement("span")
             thumbCount.setAttribute("id", `thumbCount${i}`)
-            thumbCount.textContent = `${counterThumb[i]}`
+            thumbCount.textContent = ` +${counterThumb[i]}`
             emojiContainer.appendChild(thumbCount)
 
             const emojiReactHeart = document.createElement("a")
@@ -195,7 +195,7 @@ function displayData (data) {
             emojiContainer.appendChild(emojiReactHeart)
             const heartCount = document.createElement("span")
             heartCount.setAttribute("id", `heartCount${i}`)
-            heartCount.textContent = `${counterHeart[i]}`
+            heartCount.textContent = ` +${counterHeart[i]}`
             emojiContainer.appendChild(heartCount)
 
       // comment section
@@ -285,11 +285,11 @@ async function generatebase64() {
   }
 
   starCounter = document.getElementById(`starCount${a}`)
-  starCounter.textContent = `+ ${counterStar[a]}`
+  starCounter.textContent = ` +${counterStar[a]}`
   thumbCounter = document.getElementById(`thumbCount${a}`)
-  thumbCounter.textContent = `+ ${counterThumb[a]}`
+  thumbCounter.textContent = ` +${counterThumb[a]}`
   heartCounter = document.getElementById(`heartCount${a}`)
-  heartCounter.textContent = `+ ${counterHeart[a]}`
+  heartCounter.textContent = ` +${counterHeart[a]}`
 
     const parseData = {
       emojiStarCount: [starCounter.textContent, thumbCounter.textContent, heartCounter.textContent],
