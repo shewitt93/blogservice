@@ -1,4 +1,3 @@
-// const fetch = require('node-fetch')
 var btn = document.querySelector('#showModal');
 var modalDlg = document.querySelector('#modal-ter');
 var imageModalCloseBtn = document.querySelector('.delete');
@@ -51,10 +50,3 @@ function myFunction() {
     }
   }
 }
-
-
-
-// module.exports.frontEnd = frontEnd;
-// var frontEnd = function(req,res){
-//   res.render('frontEnd');
-// }

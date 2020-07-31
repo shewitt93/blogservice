@@ -68,6 +68,7 @@ server.post('/blog/emojis', (req, res) => {
 server.delete('/blog', (req, res)=> {
   const deletePost = JSON.parse(req.body);
   blog.splice(deletePost.id,1)
+
   res.send(JSON.stringify(deletePost))
 })
 
