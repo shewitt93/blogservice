@@ -22,7 +22,7 @@ var counterHeart = [];
 getAllBlogs();
 
 function getAllBlogs(){
-    fetch('http://localhost:3000/blogs')
+    fetch('https://phoblography.herokuapp.com/blogs')
         .then(r => r.json())
         .then(displayData)
         .catch(console.warn)
@@ -66,7 +66,7 @@ function submitBlog(e){
     body: JSON.stringify(parseData)
   };
 
-  fetch('http://localhost:3000/blog', options)
+  fetch('https://phoblography.herokuapp.com/blog', options)
   .then(r => r.json())
   .then(() => getAllBlogs())
   .catch(console.warn)
@@ -256,7 +256,7 @@ function deletePost(e,a){
     body: JSON.stringify(parseData)
   };
 
-  fetch('http://localhost:3000/blog', options)
+  fetch('https://phoblography.herokuapp.com/blog', options)
       .then(r => r.json())
       .then(() => getAllBlogs())
       .catch(console.warn)
@@ -292,7 +292,7 @@ async function generatebase64() {
       method: 'POST',
       body: JSON.stringify(parseData)
     };
-    fetch('http://localhost:3000/blog/emojis', options)
+    fetch('https://phoblography.herokuapp.com/blog/emojis', options)
     .then(r => r.json())
     // .then(() => displayComment(parseData))
     .catch(console.warn)
@@ -311,7 +311,7 @@ async function generatebase64() {
       body: JSON.stringify(parseData)
     };
 
-    fetch('http://localhost:3000/blog/comments', options)
+    fetch('https://phoblography.herokuapp.com/blog/comments', options)
     .then(r => r.json())
     .then(() => displayComment(parseData))
     .catch(console.warn)
