@@ -6,20 +6,17 @@ var cancelButton = document.querySelector('.close-modal');
 
 
 if (btn != null){
-console.log(btn)
 btn.addEventListener('click', function(e){
   modalDlg.classList.add('is-active');
 });}
 
 if (imageModalCloseBtn != null){
-  console.log(imageModalCloseBtn)
 imageModalCloseBtn.addEventListener('click', function(e){
   e.preventDefault();
   modalDlg.classList.remove('is-active');
 });}
 
 if (cancelButton != null){
-console.log(cancelButton)
 cancelButton.addEventListener('click', function(e){
   e.preventDefault();
   modalDlg.classList.remove('is-active');

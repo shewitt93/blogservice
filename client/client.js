@@ -8,7 +8,7 @@ const search = document.getElementById("search");
 
 submit.addEventListener('click', submitBlog)
 image.addEventListener('change', generatebase64)
-giff.addEventListener('change', getGiff)
+giff.addEventListener('input', getGiff)
 
 
 var base64img;
