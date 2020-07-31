@@ -165,9 +165,13 @@ function displayData (data) {
       caption.textContent = data.blog[i].text;
       card.appendChild(caption)
 
-      const emojiContainer = document.createElement("div")
+      const emojiCommentContainer = document.createElement("div")
+      emojiCommentContainer.setAttribute("class", "emojiCommentContainer")
+      caption.appendChild(emojiCommentContainer)
+
+          const emojiContainer = document.createElement("div")
           emojiContainer.setAttribute("id", "emojiContainer")
-          card.appendChild(emojiContainer)
+          emojiCommentContainer.appendChild(emojiContainer)
             // append emoji reactions
             const emojiReactStar = document.createElement("a")
             emojiReactStar.setAttribute("id", `starEmoji${i}`)
@@ -196,15 +200,17 @@ function displayData (data) {
             heartCount.textContent = `${counterHeart[i]}`
             emojiContainer.appendChild(heartCount)
 
-      // comment section
+            // comment section
 
+          
+          
           //append comment textbar
           const commentText = document.createElement("textarea")
           commentText.setAttribute("id", `commentText${i}`)
           commentText.setAttribute("class", "commentTextArea")
 
           commentText.setAttribute("maxlength", "200")
-          card.appendChild(commentText)
+          emojiCommentContainer.appendChild(commentText)
           //append leave comment button
           const commentButton = document.createElement("button")
 
@@ -212,13 +218,13 @@ function displayData (data) {
 
           commentButton.setAttribute("id", `commentButton${i}`)
           commentButton.textContent = "Comment"
-          card.appendChild(commentButton)
+          emojiCommentContainer.appendChild(commentButton)
           //append leave comment section
           const commentSec = document.createElement("div")
           commentSec.setAttribute("id", `commentSec${i}`)
 
           commentSec.setAttribute("class", `commentSection`)
-          card.appendChild(commentSec)
+          caption.appendChild(commentSec)
 
     results.append(card);
 
