@@ -4,6 +4,9 @@ A photography-centred blog, allowing anonymous posting and commenting. Built wit
 (Screenshots here)
 
 ## Installation & usage
+### On the web
+- Go to [musing-hopper-288ea1.netlify.app](https://musing-hopper-288ea1.netlify.app)
+- Follow the usage instructions from point 3.
 ### Installation
 - Clone or download the repo.
 - In your command line, navigate to the server folder and run `npm install`.
