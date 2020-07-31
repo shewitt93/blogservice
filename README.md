@@ -1,7 +1,8 @@
 # Fotographiq
 A photography-centred blog, allowing anonymous posting and commenting. Built with JavaScript.
 
-(Screenshots here)
+![Screenshot of Fotographiq](https://i.imgur.com/Xu7hMtD.png)
+
 
 ## Installation & usage
 
