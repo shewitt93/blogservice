@@ -67,7 +67,6 @@ function submitBlog(e){
   };
 
   fetch('http://localhost:3000/blog', options)
-  // .then(console.log)
   .then(r => r.json())
   .then(() => getAllBlogs())
   .catch(console.warn)
@@ -75,7 +74,6 @@ function submitBlog(e){
 
 function getGiff() {
   const gifSearchTerm = document.getElementById("gifentry").value.toLowerCase();
-  console.log(gifSearchTerm)
   const giphy_url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchTerm}&api_key=4vehjptTgnajwmVWXFcixiyVUWg8Gu4D&limit=5`
   fetch(giphy_url)
   .then(resp => resp.json())
@@ -250,8 +248,6 @@ function displayData (data) {
 }
 
 function deletePost(e,a){
-  console.log(`Trying to delete post${a}`)
-
   const parseData = {
     id: `${a}`
   };
@@ -322,7 +318,6 @@ async function generatebase64() {
   }
 
   function displayGif(data){
-      // console.log(data.data[Math.floor(Math.random()*5)].images.original.url)
       newGif = data.data[Math.floor(Math.random()*5)].images.original.url
 }
 
