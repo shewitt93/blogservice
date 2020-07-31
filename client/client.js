@@ -6,7 +6,7 @@ const search = document.getElementById("search");
 
 
 submit.addEventListener('click', submitBlog)
-image.addEventListener('change', generatebase64)
+image.addEventListener('input', generatebase64)
 giff.addEventListener('input', getGiff)
 
 
@@ -98,6 +98,8 @@ function displayData (data) {
       // append inner div for card image
       const cardImage = document.createElement("img")
       cardImage.setAttribute("class", "card-image")
+      // console.log(!!data.blog[i].image)
+      // debugger
 
       if (!!data.blog[i].image){
       cardImage.src = data.blog[i].image;
@@ -264,8 +266,13 @@ function deletePost(e,a){
 
 
 async function generatebase64() {
+  if (!!image.files[0]){
     const base64 = await image.files[0].convertToBase64()
       base64img = base64.result
+      console.log(typeof base64img)
+    } else {
+       base64img = ""
+    }
   }
 
   function emojiCounter(e,a){
