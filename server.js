@@ -31,9 +31,7 @@ server.use(bodyParser.json({
 }))
 
 // My blogs resource
-const blog = [
-    {title: "angus", text: "hello", type: "Digital", cameratype: "Canon",
-    lenstype: "50mm f/1.8", image: "",gif:"", id:"0", emojiCount:"", comments: []} ,]
+const blog = []
 
 
 
