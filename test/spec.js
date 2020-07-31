@@ -3,8 +3,7 @@ const expect = require('chai').expect;
 const chaiHttp = require('chai-http')
 const rewire = require('rewire');
 let app = rewire('../server.js');
-// let client = rewire('../client/client.js')
-// let server = rewire('../server.js')
+
 chai.use(chaiHttp);
 chai.should();
 let browser;
@@ -41,29 +40,18 @@ describe('Routes', () => {
           done();
         });
     });
-  describe('POST /blog/comments', () => {
-      // in progress
-      it("should create new comment", (done) => {
-        chai.request('http://localhost:3000')
-        .post('/blogs/comments')
-        .end((err, req) => {
-          req.body.should.be.a('object');
-          // req.should.have.status(200);
-          done();
-        });
-      });
-  //
-      // in progress
-      // it("should create new blog", (done) => {
-      //   chai.request(app)
-      //   .post('/blogs/new')
-      //   // .send({"blogs":{"title":"hello"}})
-      //   // .expect(200)
-      //   .end((err, res) => {
-      //     // res.should.have.status(200);
-      //     res.body.should.be.a('object');
-      //     done();
-      //   });
-      // });
-  });
+
+  // describe('POST /blog/comments', () => {
+  //     // in progress
+  //     it("should create new comment", (done) => {
+  //       chai.request('http://localhost:3000')
+  //       .post('/blogs/comments')
+  //       .end((err, req) => {
+  //         req.body.should.be.a('object');
+  //         // req.should.have.status(200);
+  //         done();
+  //       });
+  //     });
+  // });
+
 })})
