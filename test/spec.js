@@ -1,52 +1,69 @@
-const chai = require('chai')
-const expect = require('chai').expect
+const chai = require('chai');
+const expect = require('chai').expect;
 const chaiHttp = require('chai-http')
 const rewire = require('rewire');
-const fetch = require('node-fetch');
-var sinon = require('sinon');
-const puppeteer = require('puppeteer'); 
-require('jsdom-global')();
-
-const fs = require('fs');
-const { doesNotMatch } = require('assert');
-
-let browser;
-let page;
-
-before(async () => {
-    try {
-        browser = await puppeteer.launch({headless: true});
-        page = await browser.newPage();
-        const html = fs.readFileSync('index.html', {encoding: 'utf-8'});
-        await page.setContent(html)
-    } catch {
-        done();
-    }
-
-});
-
-let frontEnd = rewire('../client/frontend.js');
+let app = rewire('../server.js');
 // let client = rewire('../client/client.js')
 // let server = rewire('../server.js')
-
 chai.use(chaiHttp);
 chai.should();
-
-describe('openModal', () => {
-    describe('btn', () => {
-      // var fake = sinon.fake.returns('fake');
-      // console.log(fake());
-        const btn = frontEnd.__get__('btn');
-        it('should not be undefined', () => {
-           expect(btn).to.not.be.undefined;
-        });
-
-        it('content should store a string', () => {
-            expect(btn.textContent).to.be.a('string');
-        });
-
-        it('should be declared as "new post"', () => {
-            expect(btn).to.equal('New post');
+let browser;
+let page;
+describe('Routes', () => {
+  describe('GET /', () => {
+    it("should get home route", (done) => {
+      chai.request('http://localhost:3000')
+        .get('/')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          // expect(res.text).to.eql('Hello world!');
+          done();
         });
     });
+    it("should return all blogs", (done) => {
+      chai.request('http://localhost:3000')
+        .get('/blogs')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+    it("should create new blog", (done) => {
+      chai.request('http://localhost:3000')
+        .post('/blog/comments')
+        .send({"blogs":[0]})
+        // .expect(200)
+        .end((err, res) => {
+          // res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  describe('POST /blog/comments', () => {
+      // in progress
+      it("should create new comment", (done) => {
+        chai.request('http://localhost:3000')
+        .post('/blogs/comments')
+        .end((err, req) => {
+          req.body.should.be.a('object');
+          // req.should.have.status(200);
+          done();
+        });
+      });
+  //
+      // in progress
+      // it("should create new blog", (done) => {
+      //   chai.request(app)
+      //   .post('/blogs/new')
+      //   // .send({"blogs":{"title":"hello"}})
+      //   // .expect(200)
+      //   .end((err, res) => {
+      //     // res.should.have.status(200);
+      //     res.body.should.be.a('object');
+      //     done();
+      //   });
+      // });
   });
+})})
