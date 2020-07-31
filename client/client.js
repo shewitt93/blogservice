@@ -22,7 +22,7 @@ var counterHeart = [];
 getAllBlogs();
 
 function getAllBlogs(){
-    fetch('http://localhost:3000/blogs')
+    fetch('https://phoblography.herokuapp.com/blogs')
         .then(r => r.json())
         .then(displayData)
         .catch(console.warn)
@@ -66,7 +66,7 @@ function submitBlog(e){
     body: JSON.stringify(parseData)
   };
 
-  fetch('http://localhost:3000/blog', options)
+  fetch('https://phoblography.herokuapp.com/blog', options)
   .then(r => r.json())
   .then(() => getAllBlogs())
   .catch(console.warn)
@@ -167,9 +167,13 @@ function displayData (data) {
       caption.textContent = data.blog[i].text;
       card.appendChild(caption)
 
-      const emojiContainer = document.createElement("div")
+      const emojiCommentContainer = document.createElement("div")
+      emojiCommentContainer.setAttribute("class", "emojiCommentContainer")
+      caption.appendChild(emojiCommentContainer)
+
+          const emojiContainer = document.createElement("div")
           emojiContainer.setAttribute("id", "emojiContainer")
-          card.appendChild(emojiContainer)
+          emojiCommentContainer.appendChild(emojiContainer)
             // append emoji reactions
             const emojiReactStar = document.createElement("a")
             emojiReactStar.setAttribute("id", `starEmoji${i}`)
@@ -198,15 +202,17 @@ function displayData (data) {
             heartCount.textContent = ` +${counterHeart[i]}`
             emojiContainer.appendChild(heartCount)
 
-      // comment section
+            // comment section
 
+          
+          
           //append comment textbar
           const commentText = document.createElement("textarea")
           commentText.setAttribute("id", `commentText${i}`)
           commentText.setAttribute("class", "commentTextArea")
 
           commentText.setAttribute("maxlength", "200")
-          card.appendChild(commentText)
+          emojiCommentContainer.appendChild(commentText)
           //append leave comment button
           const commentButton = document.createElement("button")
 
@@ -214,13 +220,13 @@ function displayData (data) {
 
           commentButton.setAttribute("id", `commentButton${i}`)
           commentButton.textContent = "Comment"
-          card.appendChild(commentButton)
+          emojiCommentContainer.appendChild(commentButton)
           //append leave comment section
           const commentSec = document.createElement("div")
           commentSec.setAttribute("id", `commentSec${i}`)
 
           commentSec.setAttribute("class", `commentSection`)
-          card.appendChild(commentSec)
+          caption.appendChild(commentSec)
 
     results.append(card);
 
@@ -258,7 +264,7 @@ function deletePost(e,a){
     body: JSON.stringify(parseData)
   };
 
-  fetch('http://localhost:3000/blog', options)
+  fetch('https://phoblography.herokuapp.com/blog', options)
       .then(r => r.json())
       .then(() => getAllBlogs())
       .catch(console.warn)
@@ -299,7 +305,7 @@ async function generatebase64() {
       method: 'POST',
       body: JSON.stringify(parseData)
     };
-    fetch('http://localhost:3000/blog/emojis', options)
+    fetch('https://phoblography.herokuapp.com/blog/emojis', options)
     .then(r => r.json())
     // .then(() => displayComment(parseData))
     .catch(console.warn)
@@ -318,7 +324,7 @@ async function generatebase64() {
       body: JSON.stringify(parseData)
     };
 
-    fetch('http://localhost:3000/blog/comments', options)
+    fetch('https://phoblography.herokuapp.com/blog/comments', options)
     .then(r => r.json())
     .then(() => displayComment(parseData))
     .catch(console.warn)

@@ -45,6 +45,7 @@ h6 {
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
 }
 
 .modal-card-body .content {
@@ -53,10 +54,15 @@ h6 {
 
 .content {
   padding: 5px 10px 5px 40px;
+  margin-bottom: 50px;
+/*   overflow: scroll; */
+  /* max-width: 600px;
+  max-height: 600px; */
 }
 
 .titlesec {
   padding: 10px 0px;
+  margin-bottom: 10px;
 }
 
 #gifentry {
@@ -94,25 +100,37 @@ h6 {
   padding-left: 10px;
   margin-top: 0;
   background-color: whitesmoke;
+/*   overflow: scroll; */
 }
 
 .commentTextArea {
   width: 40%;
-  position: absolute;
+  /* position: absolute; */
   right: 120px;
   bottom: 10px;
+  
 }
 
 .button.cb {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
+  /* position: absolute; */
+  /* right: 10px;
+  bottom: 10px; */
+  text-align: center;
+  margin: 10px;
 }
 
 #emojiContainer {
-  position: absolute;
+  /* position: absolute; */
   left: 25px;
   bottom: 10px;
+  margin-right: 10px; 
+}
+
+.emojiCommentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }
 
 .cameraMode, .cameraType, .lensType {
@@ -135,10 +153,12 @@ h6 {
   }
 
   .card.column.is-half {
-    height: 600px;
+    /* HERE */
+    height: 750px;
     margin: auto;
     width: 49%;
     margin-bottom: 10px;
+    overflow: scroll;
   }
 }
 @media screen and (max-width: 769px) {

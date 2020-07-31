@@ -3,8 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const server = express();
-server.use(express.static('/client/client.js'))
-server.use(express.static('/client/index.html'))
+// server.use(express.static('/client/client.js'))
+// server.use(express.static('/client/index.html'))
 server.use(cors());
 server.use(express.json())
 server.use(bodyParser.text({
