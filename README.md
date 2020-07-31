@@ -33,7 +33,7 @@ A photography-centred blog, allowing anonymous posting and commenting. Built wit
 
 ## Wins & Challenges
 ### Wins
-- Create delete functionality, allowing users to delete their posts.
+- Creating delete functionality, allowing users to delete their posts.
 - Implementing an image upload feature using Base64 encoding.
 ### Challenges
 - Keeping the emoji counter numbers consistent on refresh.
