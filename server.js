@@ -3,6 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const server = express();
+server.use(express.static('/client/client.js'))
+server.use(express.static('/client/index.html'))
 server.use(cors());
 server.use(express.json())
 server.use(bodyParser.text({
@@ -35,7 +37,7 @@ const blog = [
 
 
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 // root route
 server.get('/', (req, res) => res.send('Hello, client!'))
 //search route

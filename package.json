@@ -4,9 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-
     "test": "nyc --reporter=text-summary mocha --reporter=nyan --bail",
-
     "start": "node server.js"
   },
   "author": "",
@@ -14,7 +12,6 @@
   "dependencies": {
     "assert": "^2.0.0",
     "axios": "^0.19.0",
-
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -30,6 +27,5 @@
     "nyc": "^15.1.0",
     "puppeteer": "^5.2.1",
     "rewire": "^5.0.0"
-
   }
 }
