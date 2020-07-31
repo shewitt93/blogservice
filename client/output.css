@@ -1,4 +1,4 @@
-body, .button {
+/* body, .button { */
   font-family: "Work Sans", sans-serif;
 }
 
@@ -55,7 +55,7 @@ h6 {
 .content {
   padding: 5px 10px 5px 40px;
   margin-bottom: 50px;
-  overflow: scroll;
+/*   overflow: scroll; */
   /* max-width: 600px;
   max-height: 600px; */
 }
@@ -100,7 +100,7 @@ h6 {
   padding-left: 10px;
   margin-top: 0;
   background-color: whitesmoke;
-  overflow: scroll;
+/*   overflow: scroll; */
 }
 
 .commentTextArea {
