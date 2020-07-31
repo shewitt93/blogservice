@@ -2,18 +2,12 @@ body, .button {
   font-family: "Work Sans", sans-serif;
 }
 
-main {
-  width: 95%;
-  margin: auto;
-  margin-top: 25px;
-}
-
 header {
   background-color: #f3f3f3;
   text-align: center;
 }
 
-header p {
+h6 {
   padding: 20px;
   text-align: center;
 }
@@ -45,17 +39,12 @@ header p {
   top: 0;
 }
 
-.card.column.is-half {
-  height: 600px;
-  margin: auto;
-  width: 49%;
-  margin-bottom: 10px;
-}
-
 .card-image {
   background-size: cover;
   max-height: 450px;
   width: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .modal-card-body .content {
@@ -87,7 +76,6 @@ header p {
 .results {
   margin-bottom: 1000px;
 }
-
 
 .page-footer {
   position: relative;
@@ -139,6 +127,19 @@ header p {
   #mobile-menu {
     display: none;
   }
+
+  main {
+    width: 95%;
+    margin: auto;
+    margin-top: 25px;
+  }
+
+  .card.column.is-half {
+    height: 600px;
+    margin: auto;
+    width: 49%;
+    margin-bottom: 10px;
+  }
 }
 @media screen and (max-width: 769px) {
   .navbar-item.has-dropdown.is-hoverable {
@@ -153,7 +154,15 @@ header p {
   .navbar-menu {
     display: initial;
   }
-}
 
+  #pageName {
+    font-size: 65px;
+  }
+
+  #showModal {
+    width: 120px;
+    height: auto;
+  }
+}
 
 /*# sourceMappingURL=output.css.map */
